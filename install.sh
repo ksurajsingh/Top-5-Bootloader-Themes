@@ -131,7 +131,7 @@ function config_grub() {
 
     echo_info "echo \"GRUB_THEME=\"${THEME_DIR}/${THEME_NAME}/theme.txt\"\" >> /etc/default/grub"
     echo "GRUB_THEME=\"${THEME_DIR}/${THEME_NAME}/theme.txt\"" >> /etc/default/grub
-    
+
     #--------------------------------------------------
 
     echo_primary 'Setting grub graphics mode to auto'
@@ -140,7 +140,7 @@ function config_grub() {
     sed -i '/GRUB_GFXMODE=/d' /etc/default/grub
 
     echo_info "echo 'GRUB_GFXMODE=\"auto\"' >> /etc/default/grub"
-    echo 'GRUB_GFXMODE="auto"' >> /etc/default/grub   
+    echo 'GRUB_GFXMODE="auto"' >> /etc/default/grub
 }
 
 function update_grub() {
@@ -155,13 +155,9 @@ function update_grub() {
         grub-mkconfig -o /boot/grub/grub.cfg
 
     elif [[ -x "$(command -v grub2-mkconfig)" ]]; then
-        if [[ -x "$(command -v zypper)" ]]; then
+        if [[ -x "$(command -v zypper)" || -x "$(command -v dnf)" ]]; then
             echo_info 'grub2-mkconfig -o /boot/grub2/grub.cfg'
             grub2-mkconfig -o /boot/grub2/grub.cfg
-
-        elif [[ -x "$(command -v dnf)" ]]; then
-            echo_info 'grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg'
-            grub2-mkconfig -o /boot/efi/EFI/fedora/grub.cfg
         fi
     fi
 }
