@@ -48,7 +48,7 @@ function check_root() {
 }
 
 function select_theme() {
-    themes=('Vimix' 'Cyberpunk' 'Shodan' 'fallout' 'CyberRe' 'minegrub-theme' 'Quit')
+    themes=('Vimix' 'Cyberpunk' 'Shodan' 'fallout' 'CyberRe' 'minegrub' 'bsol' 'Quit')
 
     PS3=$(echo_prompt '\nChoose The Theme You Want: ')
     select THEME_NAME in "${themes[@]}"; do
@@ -68,9 +68,12 @@ function select_theme() {
             'CyberRe')
                 splash 'Installing CyberRe Theme...'
                 break;;
-            'minegrub-theme')
+            'minegrub')
                 splash 'Installing Minecraft Theme...'
                 break;;
+            'bsol')
+              splash 'Installing BSOL Theme...'
+              break;;
             'Quit')
                 echo_info 'User requested exit...!'
                 exit 0;;
